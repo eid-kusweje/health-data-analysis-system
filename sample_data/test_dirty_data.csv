@@ -1,0 +1,22 @@
+district,region,disease,period_date,date_reported,sex,age_group,cases,deaths
+Lilongwe,Central,Malaria,2025-01-01,2025-02-05,Female,0-4,120,1
+Lilongwe,Central,Malaria,2025-02-01,2025-03-06,Male,0-4,135,2
+Lilongwe,Central,Malaria,2025-03-01,2025-04-07,F,5-14,98,0
+Lilongwe,Central,Pneumonia,2025-01-01,2025-02-04,male,0-4,40,1
+Lilongwe,Central,Pneumonia,2025-02-01,2025-05-20,Female,15-49,36,1
+Zomba,Southern,Diarrhoea,2025-01-01,2025-02-08,M,5-14,45,0
+Zomba,Southern,Diarrhoea,2025-02-01,2025-03-09,Female,0-4,,0
+Zomba,Southern,Diarrhoea,2025-03-01,2025-04-06,Female,0-4,-7,0
+zomba ,Southern,Malaria,2025-01-01,2025-02-06,Female,50+,88,1
+Blantyre City,Southern,Malaria,2025-01-01,2025-02-06,Unknown,15-49,150,2
+Blantyre,Southern,Malaria,2025-02-01,2025-03-07,Female,15-49,many,1
+Blantyre,Southern,Cholera,2099-01-01,2025-02-06,Male,15-49,12,1
+Mangochi,Southern,Malaria,2025-01-01,2025-02-05,Female,0-4,10,15
+Mangochi,Southern,Malaria,2025-02-01,2025-03-05,Female,0-4,,0
+Mangochi,Southern,Malaria,2025-03-01,2025-04-05,Male,0-4,,0
+Karonga,Northern,Tuberculosis,2025-01-01,2025-02-10,Male,50+,22,2
+Karonga,Northern,Tuberculosis,2025-02-01,2025-03-11,Female,50+,19,1
+Karonga,Northern,Tuberculosis,2025-02-01,2025-03-11,Female,50+,19,1
+Lilongwe,Central,Malaria,2025-01-01,2025-02-05,Female,0-4,120,1
+Dedza,Central,Dysentery,2025-01-01,2025-02-09,Male,5-14,30,0
+Dedza,Central,Dysentery,2025-02-01,2025-03-10,Female,5-14,28,0

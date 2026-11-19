@@ -1,0 +1,3 @@
+district,region,disease,period_date,date_reported,sex,age_group,cases,deaths
+Lilongwe,Central,Malaria,2025-01-01,2025-02-06,Female,0-4,120,1
+Zomba,Southern,Diarrhoea,2025-01-01,2025-02-08,Male,5-14,45,0

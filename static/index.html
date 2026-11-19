@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health &amp; Disease Analytics — Malawi</title>
+<link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="loginView" class="login-wrap hidden">
+  <div class="login-card">
+    <div class="login-side">
+      <div class="brand-mark" style="margin-bottom:20px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </div>
+      <h1>Health &amp; Disease Analytics</h1>
+      <p>A web-based exploratory data analysis dashboard for public health
+         data quality and disease pattern analysis in Malawi.</p>
+      <ul class="login-points">
+        <li><span class="dot">1</span><span>Check completeness, timeliness, consistency, validity and outliers in one place.</span></li>
+        <li><span class="dot">2</span><span>Explore disease trends over time and compare Malawi districts before drawing conclusions.</span></li>
+        <li><span class="dot">3</span><span>Aligned with Malawi 2063 — digital transformation and evidence-based health management.</span></li>
+      </ul>
+    </div>
+    <form class="login-form" id="loginForm">
+      <h2 style="font-size:1.3rem">Sign in</h2>
+      <p class="small muted">Authorised users only. Use a demo account below for testing.</p>
+      <div id="loginError" class="error-box hidden" role="alert"></div>
+      <div class="field"><label for="loginEmail">Email address</label>
+        <input id="loginEmail" type="email" required autocomplete="username" placeholder="analyst@demo.mw"></div>
+      <div class="field"><label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="••••••••"></div>
+      <button class="btn" type="submit" style="width:100%">Sign in</button>
+      <div class="demo-accounts">
+        <strong>Demo test accounts</strong>
+        <table>
+          <tr><td>Administrator</td><td>admin@demo.mw</td><td>Admin123!</td></tr>
+          <tr><td>Analyst</td><td>analyst@demo.mw</td><td>Analyst123!</td></tr>
+          <tr><td>Viewer (read-only)</td><td>viewer@demo.mw</td><td>Viewer123!</td></tr>
+        </table>
+      </div>
+      <p class="small muted" style="margin-top:16px">De-identified data only.
+        This tool supports exploratory analysis — it does not diagnose patients
+        or declare outbreaks.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div id="appView" class="shell hidden">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+      </div>
+      <div><div class="brand-name">Health &amp; Disease Analytics</div>
+      <div class="brand-sub">Malawi · Malawi 2063</div></div>
+    </div>
+
+    <div class="nav-label">General</div>
+    <button class="nav-btn" data-view="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Dashboard</button>
+    <button class="nav-btn" data-view="datasets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Datasets</button>
+
+    <div class="nav-label">Analysis</div>
+    <button class="nav-btn" data-view="quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg>Data Quality</button>
+    <button class="nav-btn" data-view="patterns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M6 15l4-5 3.5 3L19 7"/></svg>Disease Patterns</button>
+    <button class="nav-btn" data-view="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h7"/></svg>Reports &amp; Export</button>
+
+    <div class="nav-label">System</div>
+    <button class="nav-btn hidden" data-view="admin" id="adminNav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 0 0-.14-1.4l2-1.55-2-3.46-2.36.95A7 7 0 0 0 13.9 5L13.5 2.5h-4L9.1 5a7 7 0 0 0-2.6 1.54l-2.36-.95-2 3.46 2 1.55a7 7 0 0 0 0 2.8l-2 1.55 2 3.46 2.36-.95a7 7 0 0 0 2.6 1.54l.4 2.5h4l.4-2.5a7 7 0 0 0 2.6-1.54l2.36.95 2-3.46-2-1.55c.1-.45.14-.92.14-1.4z"/></svg>Administration</button>
+    <button class="nav-btn" data-view="help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M9.2 9.2A2.9 2.9 0 1 1 12 14.5V16"/><circle cx="12" cy="18.6" r=".4" fill="currentColor"/></svg>Help &amp; Test Guide</button>
+
+    <div class="sidebar-foot">
+      <div class="user-card">
+        <div class="name" id="sideUserName">—</div>
+        <div class="small muted" id="sideUserMeta">—</div>
+        <button class="btn secondary small-btn" id="logoutBtn" style="margin-top:10px">Sign out</button>
+      </div>
+      <div class="vision-card"><strong>Malawi 2063</strong><br>
+        Digital health &amp; evidence-based decision-making. Interpret every
+        disease pattern together with its data-quality score.</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="breadcrumb">Home &gt; <strong id="crumbView">Dashboard</strong></div>
+        <div class="small muted" id="crumbDataset">No dataset selected</div>
+      </div>
+      <div class="dataset-picker">
+        <label class="small" for="datasetSelect"><strong>Active dataset</strong></label>
+        <select id="datasetSelect" aria-label="Active dataset"></select>
+        <span class="pill lime" id="topScorePill">Data quality —</span>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section id="view-overview" class="view">
+      <div class="page-head">
+        <div><h1>Dashboard</h1>
+          <p>Data quality and disease situation summary — the two questions
+             this system always answers together: <em>what is happening?</em>
+             and <em>can we trust the data behind it?</em></p></div>
+        <button class="btn lime no-print" id="refreshOverviewBtn">Refresh analysis</button>
+      </div>
+      <div id="overviewContent"></div>
+    </section>
+
+    <!-- DATASETS -->
+    <section id="view-datasets" class="view hidden">
+      <div class="page-head">
+        <div><h1>Datasets</h1>
+          <p>Upload de-identified CSV or Excel exports (for example DHIS2/HMIS
+             aggregate exports), inspect their structure, and download a
+             cleaned copy. Personal identifiers are refused.</p></div>
+        <button class="btn secondary" type="button" id="templateBtn">Download CSV template</button>
+      </div>
+
+      <div class="grid two" style="margin-bottom:16px">
+        <div class="card" id="uploadCard">
+          <h2>Upload dataset</h2><p class="card-sub">CSV, XLSX or XLS · maximum 20 MB · analysts and administrators only</p>
+          <form id="uploadForm">
+            <div class="drop-zone" id="dropZone">
+              <strong>Drag &amp; drop your file here</strong>
+              <p class="small muted">or choose a file below</p>
+              <input type="file" id="uploadFile" accept=".csv,.xlsx,.xls" required>
+            </div>
+            <div class="field" style="margin-top:14px"><label for="uploadName">Dataset name (optional)</label>
+              <input id="uploadName" placeholder="e.g. HMIS malaria export — 2024"></div>
+            <div class="field"><label for="uploadDesc">Description (optional)</label>
+              <input id="uploadDesc" placeholder="Source, period, notes"></div>
+            <button class="btn" type="submit">Upload &amp; profile dataset</button>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Expected columns</h2><p class="card-sub">Column names are matched automatically (see Help for accepted aliases).</p>
+          <div class="table-wrap"><table class="data" style="min-width:0">
+            <tr><th>Field</th><th>Example</th><th>Used for</th></tr>
+            <tr><td>district</td><td>Lilongwe</td><td>District comparison</td></tr>
+            <tr><td>disease</td><td>Malaria</td><td>Disease patterns</td></tr>
+            <tr><td>period_date</td><td>2025-01-01</td><td>Trends &amp; seasonality</td></tr>
+            <tr><td>date_reported</td><td>2025-02-06</td><td>Timeliness</td></tr>
+            <tr><td>sex · age_group</td><td>Female · 0-4</td><td>Group breakdowns</td></tr>
+            <tr><td>cases · deaths</td><td>120 · 1</td><td>Counts &amp; fatality</td></tr>
+          </table></div>
+          <p class="small muted">Datasets missing some fields still work — the affected
+             checks are shown as “not assessable” instead of guessing.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <h2>Available datasets</h2><p class="card-sub">Select a dataset to make it active across the whole dashboard.</p>
+        <div id="datasetList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Data preview &amp; column profile</h2>
+        <p class="card-sub" id="previewSub">First rows of the active dataset with missing-value profile per column.</p>
+        <div id="previewContent"></div>
+      </div>
+    </section>
+
+    <!-- DATA QUALITY -->
+    <section id="view-quality" class="view hidden">
+      <div class="page-head">
+        <div><h1>Data Quality Analysis</h1>
+          <p>Completeness, validity, uniqueness, consistency and timeliness —
+             calculated with Pandas, with every affected record counted, not hidden.</p></div>
+        <button class="btn secondary no-print" id="dqCsvBtn">Export quality summary (CSV)</button>
+      </div>
+      <div id="qualityContent"></div>
+    </section>
+
+    <!-- PATTERNS -->
+    <section id="view-patterns" class="view hidden">
+      <div class="page-head">
+        <div><h1>Disease Pattern Analysis</h1>
+          <p>Filter by disease, district, region, sex, age group and period.
+             Every chart below updates from the same filtered dataset.</p></div>
+        <button class="btn secondary no-print" id="patternCsvBtn">Export filtered summary (CSV)</button>
+      </div>
+      <div class="card no-print" style="margin-bottom:16px">
+        <h2>Filters</h2><p class="card-sub">Leave a filter on “All” to include everything.</p>
+        <div class="filter-bar" id="filterBar"></div>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="applyFiltersBtn">Apply filters</button>
+          <button class="btn secondary" id="clearFiltersBtn">Clear all</button>
+          <span class="pill blue" id="filterStatus">No filters applied</span>
+        </div>
+      </div>
+      <div id="patternsContent"></div>
+    </section>
+
+    <!-- REPORTS -->
+    <section id="view-reports" class="view hidden">
+      <div class="page-head">
+        <div><h1>Reports &amp; Export</h1>
+          <p>Generate a printable situation report or export the underlying
+             summaries for use in Excel, R or another Python program.</p></div>
+      </div>
+      <div class="grid three no-print" style="margin-bottom:16px">
+        <div class="card"><h2>Printable report</h2>
+          <p class="small muted">A4-friendly summary. Use your browser’s
+             “Save as PDF” in the print dialog to produce a PDF.</p>
+          <button class="btn" id="printReportBtn">Print / save as PDF</button></div>
+        <div class="card"><h2>Cleaned dataset</h2>
+          <p class="small muted">Standardised districts, sex values, dates and
+             numbers. Records are never silently deleted.</p>
+          <label class="small" style="display:block;margin-bottom:10px">
+            <input type="checkbox" id="dropDupCheck"> Also remove exact duplicate rows</label>
+          <button class="btn secondary" id="cleanedCsvBtn">Download cleaned CSV</button>
+          <div id="cleanLog" style="margin-top:12px"></div></div>
+        <div class="card"><h2>Summary exports</h2>
+          <p class="small muted">Machine-readable summaries of the current dataset.</p>
+          <div style="display:grid;gap:8px">
+            <button class="btn secondary" id="reportDqBtn">Data-quality summary CSV</button>
+            <button class="btn secondary" id="reportPatternBtn">Disease-pattern summary CSV</button>
+          </div></div>
+      </div>
+      <div id="reportContent"></div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="view-admin" class="view hidden">
+      <div class="page-head"><div><h1>Administration</h1>
+        <p>Manage users and roles, review system activity, and download a
+           backup copy of the SQLite database.</p></div></div>
+      <div id="adminContent"></div>
+    </section>
+
+    <!-- HELP -->
+    <section id="view-help" class="view hidden">
+      <div class="page-head"><div><h1>Help &amp; Test Guide</h1>
+        <p>How to test the finished system end-to-end in about five minutes,
+           plus the design system and Python integration reference.</p></div></div>
+      <div class="card help" id="helpContent"></div>
+    </section>
+
+    <p class="small muted" style="margin-top:26px">
+      Health and Disease Analytics · Eid Kusweje (24311351003) · BSc Computer Science ·
+      Guide: Mr Bester Sinkhonde · Exploratory analysis only — findings depend on data
+      quality, case definitions and reporting coverage.</p>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="/static/app.js?v=2"></script>
+</body>
+</html>
